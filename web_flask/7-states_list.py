@@ -1,29 +1,27 @@
 #!/usr/bin/python3
-"""import flask moudle"""
+"""List of states on HTML states_list"""
 
 from flask import Flask, render_template
 from models import storage
 from models.state import State
 
-
-
-app = Flask()
+app = Flask(__name__)
 
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
-    """states_list fun"""
-    dic = storage.all(State).values()
-    sorted = sorted(dic, key=lambda y: y.name)
-    return render_template('7-states_list.html', sorted_list=sorted)
+    """display a HTML page: (inside the tag BODY)"""
+    sortedlist = sorted(storage.all(
+        State).values(), key=lambda x: x.name)
+    return render_template("7-states_list.html", sorted_states_list=sortedlist)
 
 
 @app.teardown_appcontext
-def terminate():
-    """teminate to reload by close"""
+def terminate(exc):
+    """close the storage"""
     storage.close()
 
 
-if __name__ == "__main__":
-    """for pass task"""
+if __name__ == '__main__':
+    """start the server"""
     app.run(host='0.0.0.0', port=5000)
