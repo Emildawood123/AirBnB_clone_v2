@@ -9,6 +9,7 @@ app = Flask()
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
+    """States_lis fun"""
     dic = storage.all(State).values()
     sorted = sorted(dic, key=lambda y: y.name)
     return render_template('7-states_list.html', sorted_list=sorted)
@@ -16,6 +17,7 @@ def states_list():
 
 @app.teardown_appcontext
 def remove_and_reset():
+    """remove and reset"""
     storage.close()
 
 
