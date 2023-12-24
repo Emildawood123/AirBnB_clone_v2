@@ -42,7 +42,7 @@ def number(n):
     """if number show it else it take him 404"""
     try:
         n = int(n)
-        return f"{n} is number"
+        return f"{n} is a number"
     except Exception:
         abort(404)
 
