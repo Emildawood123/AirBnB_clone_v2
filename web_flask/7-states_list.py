@@ -14,7 +14,8 @@ app = Flask()
 def states_list():
     """states_list fun"""
     dic = storage.all(State).values()
-    sort = sorted(dic, key=lambda y: y.name)
+    sort = sorted(storage.all(
+        State).values(), key=lambda x: x.name)
     return render_template('7-states_list.html', sorted_list=sort)
 
 
