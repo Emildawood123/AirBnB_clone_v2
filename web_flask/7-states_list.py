@@ -16,7 +16,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def remove_and_reset():
+def remove_and_reset(exc):
     """remove and reset"""
     storage.close()
 
