@@ -7,15 +7,14 @@ from models.state import State
 
 
 
-app = Flask()
+app = Flask(__name__)
 
 
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """states_list fun"""
     dic = storage.all(State).values()
-    sort = sorted(storage.all(
-        State).values(), key=lambda x: x.name)
+    sort = sorted(dic, key=lambda y: y.name)
     return render_template('7-states_list.html', sorted_list=sort)
 
 
@@ -28,4 +27,3 @@ def terminate():
 if __name__ == "__main__":
     """for pass task"""
     app.run(host='0.0.0.0', port=5000)
-
